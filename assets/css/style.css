@@ -6,7 +6,7 @@ body{
  background: url("../img/back.gif")  ;
 background-size:cover;
 color: white;
-h1
+font-size: 20px;
 }
 .container h1, .container h2, .container h4, .container h6{
 color:goldenrod;
