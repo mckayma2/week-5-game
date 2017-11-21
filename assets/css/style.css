@@ -1,0 +1,25 @@
+body{
+
+
+}
+.container{
+ background: url("../img/back.gif")  ;
+background-size:cover;
+color: white;
+h1
+}
+.container h1, .container h2, .container h4, .container h6{
+color:goldenrod;
+}
+#scoreCard{
+display:none;
+}
+
+#question{
+
+}
+.jumbotron{
+text-align:center;
+
+}
+
