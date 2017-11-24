@@ -12,13 +12,14 @@ var correctAnswer;
 var i;
 var cleartimeouts = false;
 var scr=10;
-// Objects
 var timer;
 var nextTimer;
 var interval;
 var resume;
 var correctAnswers=0;
 var incorrectAnswers=0;
+var correctgif = "<img src='assets/img/right3.gif' alt='thumbsup' height='85' width='85'>";
+// Objects
 //===================================================
 var trivia = {
  questions: ["The llama is a domesticated camelid that is native to which continent?",
@@ -67,7 +68,7 @@ answers: ["South America",
 	  "Cornfed",
 	  "Wild plums",
 	  "King Kong",
-          "The great blue crab",
+      "The great blue crab",
 	  "Worker",
 	  "Spiders",
 	   "Parrot",
@@ -145,7 +146,7 @@ function clicked(){
 	ans = true;
         str = $( "#answers1" ).text();
 	//cleartimeouts = true;
-	if (str === correctAnswer){correctAnswers+=1; i++;triviaGame(i);finalscore(); }
+	if (str === correctAnswer){correctAnswers+=1; i++;triviaGame(i);finalscore();thumbsUp(correctgif); }
 	else{incorrectAnswers+=1; i++;triviaGame(i);finalscore();}
 	console.log(cleartimeouts);
 	console.log(str);
@@ -160,7 +161,7 @@ function clicked(){
 	pause();
 	str = $( "#answers2" ).text();
 	//  cleartimeouts = true;
-	if (str === correctAnswer){correctAnswers+=1; i++;triviaGame(i);finalscore();}
+	if (str === correctAnswer){correctAnswers+=1; i++;triviaGame(i);finalscore();thumbsUp(correctgif);}
 	else{incorrectAnswers+=1; i++; triviaGame(i); finalscore();}
 	console.log(str);
 	interval = setInterval(timer, 1000);
@@ -174,7 +175,7 @@ function clicked(){
 	pause();
 	str = $( "#answers3" ).text();
 	// cleartimeouts = true;
-	if (str === correctAnswer){correctAnswers+=1; i++;triviaGame(i); finalscore();}
+	if (str === correctAnswer){correctAnswers+=1; i++;triviaGame(i); finalscore();thumbsUp(correctgif);}
 	else{incorrectAnswers+=1; i++ ;triviaGame(i) ;finalscore();}
 	console.log(str);
 	interval = setInterval(timer, 1000);
@@ -182,7 +183,14 @@ function clicked(){
 	
 	});
 	
-	
+	function thumbsUp(pic){
+		$("#thumbsup").css("display", "block");
+		$("#thumbsup").html(pic);
+		function thumbsuphide(){
+			$("#thumbsup").css("display", "none");
+		} setTimeout(thumbsuphide, 1500);
+
+	}
 	function pause(){
 			clearInterval(interval);
 			console.log("paused");
@@ -203,7 +211,7 @@ function clicked(){
 		if(scr>=0){
 		clearInterval(resume);
 		console.log(scr);
-		$("#timer").html("Time Remaining: 0:0" + scr)
+		$("#timer").html("Time Remaining: 0:" + scr)
 		scr--;
 		}
 		if(i<=18){
@@ -223,7 +231,13 @@ function clicked(){
 		}else{
 			$("#scoreCard").css("display","block");
 			$(".table").css("display","none");
-			$("#scoreCard").html("<h4>GAME OVER<br> High Score: " + correctAnswers + "<br>Incorrectly Guessed:  " + incorrectAnswers + " </h4>");
+			$("#scoreCard").html("<h4>GAME OVER<br> High Score: " + correctAnswers + "<br>Incorrectly Guessed:  " + incorrectAnswers + " </h4><br> <button type='button' class='btn btn-primary' id='restart'>Try Again</button>");
+		    $( "#restart" ).click(function() {
+		    	
+		    	location.reload();
+
+			  
+			});
 		     }
 	}interval = setInterval(timer, 1000);
 function finalscore(){
